@@ -21,7 +21,7 @@ class Stack:
         if self.size > 0:
             item_to_remove = self.top_item
             self.top_item = item_to_remove
-            get_next_node()
+            item_to_remove.get_next_node()
             self.size -= 1
             return item_to_remove.get_value()
         print("This stack is totally empty")
@@ -35,7 +35,7 @@ class Stack:
         return self.limit > self.size
 
     def is_empty(self):
-        return self.size
+        return self.size == 0
 
     def get_size(self):
         return self.size
@@ -44,7 +44,8 @@ class Stack:
         return self.name
 
     def print_items(self):
-        pointer = self.top_itemprint_list = []
+        pointer = self.top_item
+        print_list = []
         while pointer:
             print_list.append(pointer.get_value())
             pointer = pointer.get_next_node()
