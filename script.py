@@ -17,3 +17,27 @@ stacks.append(right_stack)
 
 # Set up the Game
 num_disks = int(input("\nHow many disks do you want to play with?\n"))
+
+while num_disks < 3:
+    num_disks = int(input("Enter a number greater than or equal to 3\n"))
+
+for i in range(num_disks, 0, -1):
+    left_stack.push(i)
+
+num_optimal_moves = 2**num_disks - 1
+print("\nThe fastest you can solve this game is in {0} moves".format(num_optimal_moves))
+
+
+# Get User Input
+def get_input():
+    choices = [stack.get_name()[0] for stack in stacks]
+    while True:
+        for i in range(len(stacks)):
+            name = stacks[i].get_name()
+            letter = choices[i]
+            print("\nEnter {0} for {1}".format(letter, name))
+        user_input = input("")
+        if choices[i].find(user_input):
+            for i in range(len(stacks)):
+                if user_input == choices[i]:
+                    return stacks[i]
