@@ -13,8 +13,6 @@ stacks.append(left_stack)
 stacks.append(middle_stack)
 stacks.append(right_stack)
 
-# print(stacks)
-
 # Set up the Game
 num_disks = int(input("\nHow many disks do you want to play with?\n"))
 
@@ -37,10 +35,9 @@ def get_input():
             letter = choices[i]
             print("\nEnter {0} for {1}".format(letter, name))
         user_input = input("")
-        if choices[i].find(user_input):
-            for i in range(len(stacks)):
-                if user_input == choices[i]:
-                    return stacks[i]
+        for i in range(len(stacks)):
+            if user_input == choices[i]:
+                return stacks[i]
 
 
 # Play the Game
@@ -57,13 +54,17 @@ while right_stack.get_size() != num_disks:
         to_stack = get_input()
         if from_stack.is_empty():
             print("\n\nInvalid Move. Try Again")
-        elif to_stack.is_empty() or from_stack.peak() < to_stack.peak():
+        elif to_stack.is_empty() or (
+            not from_stack.is_empty()
+            and (to_stack.is_empty() or from_stack.peak() < to_stack.peak())
+        ):
             disk = from_stack.pop()
             to_stack.push(disk)
             num_user_moves += 1
             break
         else:
             print("\n\nInvalid Move. Try Again")
+
 
 print(
     "\n\nYou completed the game in {0} moves, and the optimal number of moves is {1}".format(

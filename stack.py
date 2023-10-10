@@ -20,7 +20,7 @@ class Stack:
     def pop(self):
         if self.size > 0:
             item_to_remove = self.top_item
-            self.top_item = item_to_remove
+            self.top_item = item_to_remove.get_next_node()
             item_to_remove.get_next_node()
             self.size -= 1
             return item_to_remove.get_value()
